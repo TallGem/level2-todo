@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section class="col-lg-8 mx-auto mt-5">
+        <h1 class="text-center text-success">TODO APP</h1>
+    </section>
+
+    <section class="row col-lg-8 mx-auto mt-5 text-center">
+        <div class="form-floating col-6">
+            <input type="text" class="form-control" id="todoName">
+            <label for="inputBudget" class="ms-3">Todo Name</label>
+        </div>
+        <div class="form-floating col-6">
+            <input type="text" class="form-control" id="todoDetails">
+            <label for="inputBudget" class="ms-3">Todo Details</label>
+        </div>
+    </section>
+
+    <section class="col-lg-7 mx-auto">
+        <button class=" container-fluid  mt-3 btn btn-success w-100" onclick="addTodo()">Add Todo</button>
+    </section>
+
+    <section class="col-lg-7 mx-auto mt-5">
+        <table class="table table-bordered table-striped" id="myTable"></table>
+    </section>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<script>
+    todoArr = []
+
+    function addTodo() {
+        todoObj = {
+            todo: todoName.value,
+            details: todoDetails.value
+
+        }
+        if (todoName.value && todoDetails.value != "") {
+
+
+            todoArr.push(todoObj);
+            todoName.value = ""
+            todoDetails.value = ""
+            displayTodo()
+        }
+    }
+
+    function displayTodo() {
+        myTable.innerHTML = ""
+        myTable.innerHTML = `
+   <tr>
+   <th>S/N</th>
+   <th>Todo Name</th>
+   <th>Todo Details</th>
+   <th>Action</th>
+   </tr>
+    `
+        for (i = 0; i < todoArr.length; i++) {
+            myTable.innerHTML += `
+
+        <tr>
+        <td>${1 + i}</td>
+        <td>${todoArr[i].todo}</td>
+        <td>${todoArr[i].details}</td>
+        <td>
+        <button class="btn btn-danger" onclick = "deleteOne()">Delete</button>
+        </td>
+        </tr>
+        `
+        }
+
+    }
+
+
+
+</script>
